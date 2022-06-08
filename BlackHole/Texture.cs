@@ -20,7 +20,7 @@ namespace BlackHole
         private void LoadTexture(string path, Options options = default)
         {
             var assembly = Assembly.GetExecutingAssembly();
-            using var stream = assembly.GetManifestResourceStream($"TemplateProject.Resources.{path}");
+            using var stream = assembly.GetManifestResourceStream($"BlackHole.Resources.{path}");
 
             ImageResult image = ImageResult.FromStream(stream, ColorComponents.RedGreenBlueAlpha);
 
