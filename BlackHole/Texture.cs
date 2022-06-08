@@ -2,7 +2,7 @@ using System.Reflection;
 using OpenTK.Graphics.OpenGL4;
 using StbImageSharp;
 
-namespace TemplateProject
+namespace BlackHole
 {
     public class Texture : IDisposable
     {

@@ -3,7 +3,7 @@ using System.Text;
 using OpenTK.Graphics.OpenGL4;
 using OpenTK.Mathematics;
 
-namespace TemplateProject
+namespace BlackHole
 {
     public class Shader : IDisposable
     {

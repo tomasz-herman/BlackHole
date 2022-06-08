@@ -4,10 +4,10 @@ using OpenTK.Mathematics;
 using OpenTK.Windowing.Common;
 using OpenTK.Windowing.Desktop;
 using OpenTK.Windowing.GraphicsLibraryFramework;
-using TemplateProject.ImGuiUtils;
+using BlackHole.ImGuiUtils;
 using ShaderType = OpenTK.Graphics.OpenGL4.ShaderType;
 
-namespace TemplateProject
+namespace BlackHole
 {
     public class Program : GameWindow
     {
@@ -19,12 +19,12 @@ namespace TemplateProject
         public static void Main(string[] args)
         {
             using var program = new Program(GameWindowSettings.Default, NativeWindowSettings.Default);
-            program.Title = "Project Title";
+            program.Title = "Black Hole";
             program.Size = new Vector2i(1280, 800);
             program.Run();
         }
 
-        public Program(GameWindowSettings gameWindowSettings, NativeWindowSettings nativeWindowSettings) : base(gameWindowSettings, nativeWindowSettings) { }
+//         public Program(GameWindowSettings gameWindowSettings, NativeWindowSettings nativeWindowSettings) : base(gameWindowSettings, nativeWindowSettings) { }
 
         protected override void OnLoad()
         {

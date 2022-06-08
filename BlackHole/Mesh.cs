@@ -1,6 +1,6 @@
 using OpenTK.Graphics.OpenGL4;
 
-namespace TemplateProject;
+namespace BlackHole;
 
 public class Mesh : IDisposable
 {
