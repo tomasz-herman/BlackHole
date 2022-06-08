@@ -96,6 +96,12 @@ namespace BlackHole
             GL.Uniform1(location, value);
         }
         
+        public void LoadFloat2(string name, Vector2 value)
+        {
+            int location = GL.GetUniformLocation(_handle, name);
+            GL.Uniform2(location, value);
+        }
+        
         public void LoadFloat3(string name, Vector3 value)
         {
             int location = GL.GetUniformLocation(_handle, name);

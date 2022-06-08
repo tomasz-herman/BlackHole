@@ -14,7 +14,8 @@ namespace BlackHole
         private Shader shader;
         private ImGuiController controller;
         private Mesh rectangle;
-        private Texture texture;
+        private TextureCube texture;
+        private Camera camera;
 
         public static void Main(string[] args)
         {
@@ -34,25 +35,30 @@ namespace BlackHole
             controller = new ImGuiController(ClientSize.X, ClientSize.Y);
 
             float[] vertices = {
-                0.5f,  0.5f, 0.0f,
-                0.5f, -0.5f, 0.0f,
-                -0.5f, -0.5f, 0.0f,
-                -0.5f,  0.5f, 0.0f
-            };
-            float[] texCoords = {
-                1.0f, 0.0f,
-                1.0f, 1.0f,
-                0.0f, 1.0f,
-                0.0f, 0.0f
-                
+                1,  1, 0,
+                1, -1, 0,
+                -1, -1, 0,
+                -1,  1, 0
             };
             int[] indices= {
                 0, 1, 3,
                 1, 2, 3
             };  
-            rectangle = new Mesh(PrimitiveType.Triangles, indices, (vertices, 0, 3), (texCoords, 1, 2));
-
-            texture = new Texture("texture.jpg");
+            rectangle = new Mesh(PrimitiveType.Triangles, indices, (vertices, 0, 3));
+            
+            (string Path, TextureTarget side)[] textures =
+            {
+                ("GalaxyTex_NegativeX.png", TextureTarget.TextureCubeMapNegativeX), 
+                ("GalaxyTex_NegativeY.png", TextureTarget.TextureCubeMapNegativeY), 
+                ("GalaxyTex_NegativeZ.png", TextureTarget.TextureCubeMapNegativeZ), 
+                ("GalaxyTex_PositiveX.png", TextureTarget.TextureCubeMapPositiveX), 
+                ("GalaxyTex_PositiveY.png", TextureTarget.TextureCubeMapPositiveY), 
+                ("GalaxyTex_PositiveZ.png", TextureTarget.TextureCubeMapPositiveZ), 
+            };
+            texture = new TextureCube(textures);
+            
+            camera = new PerspectiveCamera();
+            camera.UpdateVectors();
             
             GL.ClearColor(0.4f, 0.7f, 0.9f, 1.0f);
             GL.Disable(EnableCap.CullFace);
@@ -87,6 +93,8 @@ namespace BlackHole
             KeyboardState keyboard = KeyboardState.GetSnapshot();
             MouseState mouse = MouseState.GetSnapshot();
             
+            camera.HandleInput(keyboard, mouse, (float)args.Time);
+            
             if (keyboard.IsKeyDown(Keys.Escape)) Close();
         }
 
@@ -103,6 +111,8 @@ namespace BlackHole
             shader.Use();
             texture.Use();
             shader.LoadInteger("sampler", 0);
+            shader.LoadFloat2("resolution", new Vector2(Size.X, Size.Y));
+            shader.LoadMatrix4("invView", camera.GetProjectionViewMatrix().Inverted());
             rectangle.Render();
 
             RenderGui();
