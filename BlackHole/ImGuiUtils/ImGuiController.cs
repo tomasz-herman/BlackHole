@@ -5,7 +5,7 @@ using OpenTK.Mathematics;
 using OpenTK.Windowing.Desktop;
 using OpenTK.Windowing.GraphicsLibraryFramework;
 
-namespace TemplateProject.ImGuiUtils
+namespace BlackHole.ImGuiUtils
 {
     /// <summary>
     /// A modified version of Veldrid.ImGui's ImGuiRenderer.

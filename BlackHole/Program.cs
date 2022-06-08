@@ -1,10 +1,10 @@
-﻿using ImGuiNET;
+﻿using BlackHole.ImGuiUtils;
+using ImGuiNET;
 using OpenTK.Graphics.OpenGL4;
 using OpenTK.Mathematics;
 using OpenTK.Windowing.Common;
 using OpenTK.Windowing.Desktop;
 using OpenTK.Windowing.GraphicsLibraryFramework;
-using BlackHole.ImGuiUtils;
 using ShaderType = OpenTK.Graphics.OpenGL4.ShaderType;
 
 namespace BlackHole
@@ -24,7 +24,7 @@ namespace BlackHole
             program.Run();
         }
 
-//         public Program(GameWindowSettings gameWindowSettings, NativeWindowSettings nativeWindowSettings) : base(gameWindowSettings, nativeWindowSettings) { }
+         public Program(GameWindowSettings gameWindowSettings, NativeWindowSettings nativeWindowSettings) : base(gameWindowSettings, nativeWindowSettings) { }
 
         protected override void OnLoad()
         {

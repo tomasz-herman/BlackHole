@@ -3,7 +3,7 @@ using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
 using OpenTK.Graphics.OpenGL4;
 
-namespace TemplateProject.ImGuiUtils
+namespace BlackHole.ImGuiUtils
 {
     static class Util
     {
