@@ -16,6 +16,8 @@ namespace BlackHole
         private Mesh rectangle;
         private TextureCube texture;
         private Camera camera;
+        private float mass = 1e8f;
+        private Vector3 blackHolePosition = new (0, 0, 1e9f);
 
         public static void Main(string[] args)
         {
@@ -113,6 +115,8 @@ namespace BlackHole
             shader.LoadInteger("sampler", 0);
             shader.LoadFloat2("resolution", new Vector2(Size.X, Size.Y));
             shader.LoadMatrix4("invView", camera.GetProjectionViewMatrix().Inverted());
+            shader.LoadFloat("mass", mass);
+            shader.LoadFloat3("blackHolePosition", blackHolePosition);
             rectangle.Render();
 
             RenderGui();
@@ -122,7 +126,15 @@ namespace BlackHole
 
         private void RenderGui()
         {
-            ImGui.ShowDemoWindow();
+            ImGui.Begin("Options");
+            ImGui.SliderFloat("mass", ref mass, 1e7f, 1e9f);
+            System.Numerics.Vector3 position =
+                new System.Numerics.Vector3(blackHolePosition.X, blackHolePosition.Y, blackHolePosition.Z);
+            if (ImGui.SliderFloat3("position", ref position, -1e9f, 1e9f))
+            {
+                blackHolePosition = new Vector3(position.X, position.Y, position.Z);
+            }
+            ImGui.End();
             
             controller.Render();
         }
