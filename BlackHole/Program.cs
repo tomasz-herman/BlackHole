@@ -127,7 +127,7 @@ namespace BlackHole
         private void RenderGui()
         {
             ImGui.Begin("Options");
-            ImGui.SliderFloat("mass", ref mass, 1e7f, 1e9f);
+            ImGui.SliderFloat("mass", ref mass, 1e7f, 1e8f);
             System.Numerics.Vector3 position =
                 new System.Numerics.Vector3(blackHolePosition.X, blackHolePosition.Y, blackHolePosition.Z);
             if (ImGui.SliderFloat3("position", ref position, -1e9f, 1e9f))
